@@ -1,0 +1,21 @@
+<%= link_to "CANCEL!!!", articles_path %>
+
+<% if flash[:errors] %>
+    <% flash[:errors].each do |e| %>
+        <%= e %>
+    <% end %>
+<% end %>
+
+<%= form_for @article do |f| %>
+
+    <%= f.label :title %>
+    <%= f.text_field :title %> <br>
+
+    <%= f.label :image, "article cover image" %>
+    <%= f.file_field :image %> <br>
+
+    <%= f.label :body %>
+    <%= f.text_field :body %> <br>
+
+    <%= f.submit %>
+<% end %>

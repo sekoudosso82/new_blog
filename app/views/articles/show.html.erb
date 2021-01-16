@@ -1,0 +1,17 @@
+<div class="container">
+    <%= link_to "Go Main page", articles_path %>
+    <h2><%= @article.title %></h2> 
+    <h3><%= image_tag(@article.image, class: "index-img") %></h3> 
+    <h2><%= @article.body %></h2> 
+
+    <%= link_to "Delete Article //", article_path(@article), method: :delete %>
+    <%= link_to "Edit Article", edit_article_path(@article) %>
+    
+    <h4>COMMENTS </h4>
+    <% @article.comments.each do |comment| %>
+    <p>Comment: <%= comment.description %></p>
+    <%= link_to "more detail /// ", comment_path(comment) %>
+    <%= link_to "Delete comment////", comment_path(comment), method: :delete %>
+    <%= link_to "Edit comment", edit_comment_path(comment), method: :get %>
+    <% end %>
+</div>
