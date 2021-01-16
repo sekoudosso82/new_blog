@@ -19,7 +19,6 @@ class ArticlesController < ApplicationController
 
     def new 
         @article = Article.new 
-        # redirect_to new_article_path()
     end 
 
     def create 

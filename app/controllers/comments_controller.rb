@@ -11,14 +11,12 @@ class CommentsController < ApplicationController
 
     def new 
         # byebug
-        # @comment = Comment.new
         @comment = Comment.new(article_id: params[:article_id].to_i, description: "enter your comment")
     end 
 
     def create 
         # byebug
         @comment = Comment.create(
-            # comment_params
             article_id: params[:comment][:article_id].to_i, 
             description: params[:comment][:description]
         )
@@ -27,7 +25,6 @@ class CommentsController < ApplicationController
             redirect_to articles_path
         else
             flash[:errors] = @comment.errors.full_messages 
-            # redirect_to new_comment_path() 
             redirect_to articles_path() 
         end  
     end 
