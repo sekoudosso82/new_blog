@@ -1,7 +1,13 @@
+<div class="">
+    <%= form_tag(articles_path, method: :get) do %>
+        Search By title or body <%= text_field_tag :search, params[:search] %>
+      <%= submit_tag 'Search 🔍', name: nil %>
+    <% end %>
+</div>
 <div class="index-container">
     <%= button_to('Create New Article!', new_article_path, method: :get ) %>
 
-
+    
     <%  @articles.each do |article| %>
     <div class="index-tile">
         <h2><%= link_to "more detail", article %></h2>

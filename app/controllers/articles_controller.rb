@@ -2,12 +2,16 @@ class ArticlesController < ApplicationController
     before_action :find_article, only: [:show, :edit, :update, :destroy]
 
     def index 
-        @articles = Article.all 
-        # if Comment.all.length > 0
-        #     @acomments = Comment.all.select { |com| com.article_id === params[:id]}
-        # else
-        #     @acomments =[] 
-        # end
+        if params[:search]
+            search_term = params[:search].downcase.gsub(/\s+/, "")
+            @articles = Article.all.select { |article|
+                article.title.downcase.include?(search_term) || 
+                article.body.downcase.include?(search_term) 
+            } 
+        else 
+            @articles = Article.all 
+        end
+        
     end 
 
     def show 
@@ -46,7 +50,7 @@ class ArticlesController < ApplicationController
 
     private 
     def article_params 
-        params.require(:article).permit(:title, :body, :image)
+        params.require(:article).permit(:title, :body, :image, :search)
       end 
     
       def find_article
